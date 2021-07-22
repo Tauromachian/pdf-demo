@@ -1,28 +1,49 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <vue-pdf-app style="height: 100vh;" :pdf="pdf" :config="config"></vue-pdf-app>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import { PDFJS } from "pdfjs-dist";
+import VuePdfApp from "vue-pdf-app";
+import getPdf from "./pdf";
 
 export default {
-  name: 'App',
+  name: "App",
+
+  data() {
+    return {
+      pdf: getPdf(),
+      config: {
+        toolbar: {
+          toolbarViewerLeft: { findbar: false }
+        }
+      }
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    VuePdfApp,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin: 0;
 }
+
+.page {
+  cursor: default;
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
+}
+
+.text-layer {
+  cursor: default;
+
+}
+
 </style>
